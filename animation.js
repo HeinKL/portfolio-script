@@ -1,7 +1,3 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script>
-console.log("GSAP and ScrollTrigger loaded successfully");
 const matterContainer = document.querySelector("#matter-container");
 const THICCNESS = 60;
 
@@ -204,9 +200,7 @@ function handleResize(matterContainer) {
 }
 
 window.addEventListener("resize", () => handleResize(matterContainer));
-</script>
-
-<script>    
+  
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText); 
 let statementTl = gsap.timeline({
@@ -396,5 +390,3 @@ ScrollTrigger.create({
   pin: true,
 });
 
-
-</script>
