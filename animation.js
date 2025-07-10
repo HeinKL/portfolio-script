@@ -1,3 +1,13 @@
+// Add item numbers to .number-absolute and .number-default in .work-list items
+document.querySelectorAll('.work-list').forEach((item, idx) => {
+  const number = idx + 1;
+  const abs = item.querySelector('.number-absolute');
+  const def = item.querySelector('.number-default');
+  if (abs) abs.textContent = '0' + number + '.';
+  if (def) def.textContent = '0' + number + '.';
+});
+
+
 const matterContainer = document.querySelector("#matter-container");
 const THICCNESS = 60;
 
@@ -40,36 +50,53 @@ var render = Render.create({
 //   Composite.add(engine.world, circle);
 // }
 
+// const texture = [
+//     "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/685d2c91dadf6d4eb565ab73_VISUAL%20DESIGN.svg",
+//     "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/685d2c91fbfc48d4594f2bd0_WEB%20DESIGN.svg",
+//     "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/685d2c912b788a10502304d1_LOW%20CODE%20DEVELOPMENT.svg", 
+//     "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/685d2c91fd5641db478be058_USER%20EXPERIENCE.svg",
+//     "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/685d2c91cc333ffd16b1f3f5_INTERACTION.svg",
+//     "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/685d2c9124fa70f5ffce7293_PROTOTYPING.svg",
+//     "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/685d2c915362147bb899b658_USER%20INTERFACE.svg",
+//     "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/685d2c91e3d184c0bde76946_RESEARCH.svg",
+//     "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/685d2c914cea4f95fc4a4dff_BRAND%20DESIGN.svg"
+// ];
+
 const texture = [
-    "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/685d2c91dadf6d4eb565ab73_VISUAL%20DESIGN.svg",
-    "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/685d2c91fbfc48d4594f2bd0_WEB%20DESIGN.svg",
-    "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/685d2c912b788a10502304d1_LOW%20CODE%20DEVELOPMENT.svg", 
-    "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/685d2c91fd5641db478be058_USER%20EXPERIENCE.svg",
-    "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/685d2c91cc333ffd16b1f3f5_INTERACTION.svg",
-    "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/685d2c9124fa70f5ffce7293_PROTOTYPING.svg",
-    "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/685d2c915362147bb899b658_USER%20INTERFACE.svg",
-    "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/685d2c91e3d184c0bde76946_RESEARCH.svg",
-    "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/685d2c914cea4f95fc4a4dff_BRAND%20DESIGN.svg"
+    "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/686f98d251b0f8e5ec9d117e_Frame%2038.svg",
+    "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/686f98d20dc53f8ca893709a_Frame%2035.svg",
+    "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/686f98d2aa8ea650a2e54c67_Frame%2037.svg", 
+    "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/686f98d29e8636e3d1c2cd14_Frame%2034.svg",
+    "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/686f98d25cbed41827b9ea7a_Frame%2040.svg",
+    "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/686f98d290e455fee38ea6af_Frame%2039.svg",
+    "https://cdn.prod.website-files.com/63947b43ea7b3a1c7101252e/686f98d264e3e45d617781da_Frame%2036.svg",
 ];
 
 
-for (let i = 0; i < 50; i++) {
-  // Create a rectangle with a random SVG texture
+
+// Randomize initial angle and position for more natural stacking
+for (let i = 0; i <30; i++) {
   let texIdx = Math.floor(Math.random() * texture.length);
+  // Random position, but with a little vertical offset to avoid perfect alignment
+  let x = Math.random() * matterContainer.clientWidth;
+  let y = Math.random() * matterContainer.clientHeight * 0.7 + Math.random() * 40;
+  // Random rotation between -30 and 30 degrees
+  let angle = (Math.random() - 0.5) * (Math.PI / 3);
   let tag = Bodies.rectangle(
-    Math.random() * matterContainer.clientWidth,
-    Math.random() * matterContainer.clientHeight,
-    164, // width (adjust to your SVG)
-    56,  // height (adjust to your SVG)
+    x,
+    y,
+    164,
+    56,
     {
+      angle: angle,
       friction: 0.3,
       frictionAir: 0.00001,
       restitution: 0.8,
       render: {
         sprite: {
           texture: texture[texIdx],
-          xScale: 0.3, // adjust as needed
-          yScale: 0.3  // adjust as needed
+          xScale: 0.4,
+          yScale: 0.4
         }
       }
     }
@@ -149,7 +176,7 @@ Composite.add(engine.world, mouseConstraint);
 
 // allow scroll through the canvas
 mouseConstraint.mouse.element.removeEventListener(
-  "mousewheel",
+  "wheel",
   mouseConstraint.mouse.mousewheel
 );
 mouseConstraint.mouse.element.removeEventListener(
@@ -200,16 +227,72 @@ function handleResize(matterContainer) {
 }
 
 window.addEventListener("resize", () => handleResize(matterContainer));
+
+// Custom cursor for .work-list using .view-more with lag effect
+const assetWrappers = document.querySelectorAll('.work-list');
+assetWrappers.forEach(wrapper => {
+  const viewMore = wrapper.querySelector('.view-more');
+  if (!viewMore) return;
+  wrapper.style.cursor = 'fixed';
+  viewMore.style.position = 'absolute';
+  viewMore.style.pointerEvents = 'none';
+  viewMore.style.zIndex = 10;
+  viewMore.style.opacity = 0;
+
+  let mouseX = 0, mouseY = 0;
+  let lagX = 0, lagY = 0;
+  let animating = false;
+
+  function animateLagCursor() {
+    lagX += (mouseX - lagX) * 0.08;
+    lagY += (mouseY - lagY) * 0.08;
+    viewMore.style.transform = `translate3d(${lagX}px, ${lagY}px, 0)`;
+    if (animating) requestAnimationFrame(animateLagCursor);
+  }
+
+  let moveHandler;
+
+  wrapper.addEventListener('mouseenter', (e) => {
+    gsap.to(viewMore, { opacity: 1, scale: 1, duration: 0.3, ease: 'power2.out' });
+    const rect = wrapper.getBoundingClientRect();
+    // Start at mouse position
+    mouseX = (e.clientX || rect.left) - rect.left - viewMore.offsetWidth / 2;
+    mouseY = (e.clientY || rect.top) - rect.top - viewMore.offsetHeight / 2;
+    lagX = mouseX;
+    lagY = mouseY;
+    animating = true;
+    animateLagCursor();
+    moveHandler = function(e) {
+      const rect = wrapper.getBoundingClientRect();
+      let x = e.clientX - rect.left;
+      let y = e.clientY - rect.top;
+      // Clamp to wrapper boundaries (center .view-more on cursor)
+      const vw = viewMore.offsetWidth;
+      const vh = viewMore.offsetHeight;
+      x = Math.max(0, Math.min(x, rect.width));
+      y = Math.max(0, Math.min(y, rect.height));
+      mouseX = x - vw / 2;
+      mouseY = y - vh / 2;
+    };
+    wrapper.addEventListener('mousemove', moveHandler);
+  });
+
+  wrapper.addEventListener('mouseleave', () => {
+    gsap.to(viewMore, { opacity: 0, scale: 0.8, duration: 0.3, ease: 'power2.out' });
+    if (moveHandler) wrapper.removeEventListener('mousemove', moveHandler);
+    animating = false;
+  });
+});
   
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText); 
 let statementTl = gsap.timeline({
     scrollTrigger: {
       trigger: '.section.statement-section-wrap',
-      start: "top top", // Pin the container when its top hits the top of the viewport
-      end: "+=100%", // Extend the end point to allow for scrolling
+      start: "top 50%", // Pin the container when its top hits the top of the viewport
+      end: "+=600", // Extend the end point to allow for scrolling
       scrub: true, // Link timeline progress directly to scroll position
-      pin: true,   // Pin the container element to the viewport
+      //pin: true,   // Pin the container element to the viewport
       //pinSpacing: true, // Disable spacing to avoid extra space after pinning
     }
 });
@@ -377,7 +460,6 @@ let footer = document.querySelector(".section.footer-section"),
     adjustFooterOverlap = () => footer.style.marginTop = -getOverlap() + "px"; // adjusts the margin-top of the footer to overlap the proper amount
 
 adjustFooterOverlap();
-console.log(footer)
 
 // to make it responsive, re-calculate the margin-top on the footer when the ScrollTriggers revert
 ScrollTrigger.addEventListener("revert", adjustFooterOverlap);
@@ -389,4 +471,5 @@ ScrollTrigger.create({
   end: () => "+=" + getOverlap(),
   pin: true,
 });
+
 
