@@ -88,13 +88,13 @@ if (document.readyState === 'loading') {
 }
 
 
-let projectName = SplitText.create('.detail-hero-title', {
-    type: 'lines', 
-    linesClass: "line",
-    autoSplit: true,
-    mask: "lines",
-});
-gsap.from(projectName.lines, {
+// let projectName = SplitText.create('.detail-hero-title', {
+//     type: 'words', 
+//     //linesClass: "line",
+//     autoSplit: true,
+//     mask: "words",
+// });
+gsap.from('.detail-hero-title', {
     duration: 0.6,
     yPercent: 100,
     opacity: 0,
@@ -109,7 +109,7 @@ gsap.fromTo(".project-hero-image",                // Target
         ease: "power1.inOut",
         duration: 1,
         scrollTrigger: {
-        trigger: ".section.detail-hero-wrap",    // Element that triggers the animation
+        trigger: ".section.project-hero-img-wrap",    // Element that triggers the animation
         start: "top center",         // When to start
         end: "+=100%",           // When to end
         scrub: true,                 // Link to scroll
