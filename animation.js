@@ -386,37 +386,79 @@ cards.forEach(card => {
   });
 });
 
+
+
 let aboutTl = gsap.timeline({
-    scrollTrigger: {
+  scrollTrigger: {
     trigger: '.section.about-section-wrap',
     scrub: true,
     start: "top 50%",
     end: "+=500",
+    // markers: true, // Enable markers for debugging
     // pin: true,
   }
 });
-aboutTl.from('.mind', {
-    opacity: 0.3,
-    xPercent: -150,
-    ease: "power1.inOut"
-});
-aboutTl.to('.mind', {
-    opacity: 1,
-    xPercent: 0,
-    ease: "power1.inOut",
-    stagger: 1
-});
-aboutTl.from('.eye', {
-    opacity: 0,
-    yPercent: -80,
-    ease: "power1.inOut"
-});
-aboutTl.to('.eye', {
-    opacity: 1,
-    yPercent: 0,
-    ease: "power1.inOut",
-    stagger: 1
-});
+
+// Animate taglines in
+aboutTl.from('.tagline-1-div', {
+  xPercent: 50,
+  ease: 'power1.inOut',
+  duration: 2
+}, 0);
+aboutTl.from('.tagline-2-div', {
+  xPercent: -50,
+  ease: 'power1.inOut',
+  duration: 2
+}, 0);
+aboutTl.from('.tagline-3-div', {
+  xPercent: 50,
+  ease: 'power1.inOut',
+  duration: 2
+}, 0);
+
+// Animate taglines out (continue to each direction) near end of section
+aboutTl.to('.tagline-1-div', {
+  xPercent: 3,
+  ease: 'power1.inOut',
+  duration: 1
+}, 'exit');
+aboutTl.to('.tagline-2-div', {
+  xPercent: 5,
+  ease: 'power1.inOut',
+  duration: 1
+}, 'exit');
+aboutTl.to('.tagline-3-div', {
+  xPercent: -1,
+  ease: 'power1.inOut',
+  duration: 1
+}, 'exit');
+
+// Place 'exit' label near the end of the timeline
+aboutTl.addLabel('exit', '>=90%');
+
+
+// aboutTl.from('.mind', {
+//     opacity: 0.3,
+//     xPercent: -150,
+//     ease: "power1.inOut"
+// });
+// aboutTl.to('.mind', {
+//     opacity: 1,
+//     xPercent: 0,
+//     ease: "power1.inOut",
+//     stagger: 1
+// });
+// aboutTl.from('.eye', {
+//     opacity: 0,
+//     yPercent: -80,
+//     ease: "power1.inOut"
+// });
+// aboutTl.to('.eye', {
+//     opacity: 1,
+//     yPercent: 0,
+//     ease: "power1.inOut",
+//     stagger: 1
+// });
 
 let showCaseTl = gsap.timeline({
     scrollTrigger: {
