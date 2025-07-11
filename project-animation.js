@@ -94,7 +94,7 @@ let projectName = SplitText.create('.detail-hero-title', {
     autoSplit: true,
     mask: "lines",
 });
-gsap.from(featureWork.lines, {
+gsap.from(projectName.lines, {
     duration: 0.6,
     yPercent: 100,
     opacity: 0,
