@@ -88,7 +88,21 @@ if (document.readyState === 'loading') {
 }
 
 
-gsap.fromTo([".project-hero-image", '.detail-hero-title'],                // Target
+let projectName = SplitText.create('.detail-hero-title', {
+    type: 'lines', 
+    linesClass: "line",
+    autoSplit: true,
+    mask: "lines",
+});
+gsap.from(featureWork.lines, {
+    duration: 0.6,
+    yPercent: 100,
+    opacity: 0,
+    stagger: 0.1,
+    ease: "expo.out",
+});
+
+gsap.fromTo(".project-hero-image",                // Target
     { yPercent: -10,},          // From (initial state)
     { 
         yPercent: 10,
