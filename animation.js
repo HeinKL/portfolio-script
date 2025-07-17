@@ -75,7 +75,7 @@ const texture = [
 
 
 // Randomize initial angle and position for more natural stacking
-for (let i = 0; i <30; i++) {
+for (let i = 0; i <20; i++) {
   let texIdx = Math.floor(Math.random() * texture.length);
   // Random position, but with a little vertical offset to avoid perfect alignment
   let x = Math.random() * matterContainer.clientWidth;
@@ -399,42 +399,43 @@ let aboutTl = gsap.timeline({
   }
 });
 
-// Animate taglines in
-aboutTl.from('.tagline-1-div', {
-  xPercent: 50,
-  ease: 'power1.inOut',
-  duration: 2
-}, 0);
-aboutTl.from('.tagline-2-div', {
-  xPercent: -50,
-  ease: 'power1.inOut',
-  duration: 2
-}, 0);
-aboutTl.from('.tagline-3-div', {
-  xPercent: 50,
-  ease: 'power1.inOut',
-  duration: 2
-}, 0);
 
-// Animate taglines out (continue to each direction) near end of section
-aboutTl.to('.tagline-1-div', {
-  xPercent: 3,
-  ease: 'power1.inOut',
-  duration: 1
-}, 'exit');
-aboutTl.to('.tagline-2-div', {
-  xPercent: 5,
-  ease: 'power1.inOut',
-  duration: 1
-}, 'exit');
-aboutTl.to('.tagline-3-div', {
-  xPercent: -1,
-  ease: 'power1.inOut',
-  duration: 1
-}, 'exit');
+// Animate taglines in
+// aboutTl.from('.tagline-1-div', {
+//   xPercent: 50,
+//   ease: 'power1.inOut',
+//   duration: 2
+// }, 0);
+// aboutTl.from('.tagline-2-div', {
+//   xPercent: -50,
+//   ease: 'power1.inOut',
+//   duration: 2
+// }, 0);
+// aboutTl.from('.tagline-3-div', {
+//   xPercent: 50,
+//   ease: 'power1.inOut',
+//   duration: 2
+// }, 0);
+
+// // Animate taglines out (continue to each direction) near end of section
+// aboutTl.to('.tagline-1-div', {
+//   xPercent: 3,
+//   ease: 'power1.inOut',
+//   duration: 1
+// });
+// aboutTl.to('.tagline-2-div', {
+//   xPercent: 5,
+//   ease: 'power1.inOut',
+//   duration: 1
+// });
+// aboutTl.to('.tagline-3-div', {
+//   xPercent: -1,
+//   ease: 'power1.inOut',
+//   duration: 1
+// });
 
 // Place 'exit' label near the end of the timeline
-aboutTl.addLabel('exit', '>=90%');
+//aboutTl.addLabel('exit', '>=90%');
 
 
 // aboutTl.from('.mind', {
