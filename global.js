@@ -1,3 +1,72 @@
+
+document.querySelectorAll('.nav-logo-block').forEach(block => {
+  const navLogo1 = block.querySelector('.logo-nav');
+  const navLogo2 = block.querySelector('.logo-nav-2');
+  if (!navLogo1 || !navLogo2) return;
+
+  // Initial state: .social-link-2 is below and hidden
+  gsap.set(navLogo2, { yPercent: 100, opacity: 1, pointerEvents: 'none' });
+  gsap.set(navLogo1, { yPercent: 0, opacity: 1, pointerEvents: 'auto' });
+
+  block.addEventListener('mouseenter', () => {
+    // Move .social-link up and fade out
+    gsap.to(navLogo1, { yPercent: -100, opacity: 0, duration: 0.35, ease: 'power2.out', pointerEvents: 'none' });
+    // Move .social-link-2 up into place and fade in
+    gsap.to(navLogo2, { yPercent: 0, opacity: 1, duration: 0.35, ease: 'power2.out', pointerEvents: 'auto' });
+  });
+  block.addEventListener('mouseleave', () => {
+    // Move .social-link-2 down and fade out
+    gsap.to(navLogo2, { yPercent: 100, opacity: 0, duration: 0.35, ease: 'power2.in', pointerEvents: 'none' });
+    // Move .social-link back into place and fade in
+    gsap.to(navLogo1, { yPercent: 0, opacity: 1, duration: 0.35, ease: 'power2.in', pointerEvents: 'auto' });
+  });
+});
+// Social link hover effect: swap .social-link and .social-link-2 with animation
+document.querySelectorAll('.nav-link-block').forEach(block => {
+  const navLink1 = block.querySelector('.u-nav-link');
+  const navLink2 = block.querySelector('.u-nav-link-2');
+  if (!navLink1 || !navLink2) return;
+
+  // Initial state: .social-link-2 is below and hidden
+  gsap.set(navLink2, { yPercent: 100, opacity: 1, pointerEvents: 'none' });
+  gsap.set(navLink1, { yPercent: 0, opacity: 1, pointerEvents: 'auto' });
+
+  block.addEventListener('mouseenter', () => {
+    // Move .social-link up and fade out
+    gsap.to(navLink1, { yPercent: -100, opacity: 0, duration: 0.35, ease: 'power2.out', pointerEvents: 'none' });
+    // Move .social-link-2 up into place and fade in
+    gsap.to(navLink2, { yPercent: 0, opacity: 1, duration: 0.35, ease: 'power2.out', pointerEvents: 'auto' });
+  });
+  block.addEventListener('mouseleave', () => {
+    // Move .social-link-2 down and fade out
+    gsap.to(navLink2, { yPercent: 100, opacity: 0, duration: 0.35, ease: 'power2.in', pointerEvents: 'none' });
+    // Move .social-link back into place and fade in
+    gsap.to(navLink1, { yPercent: 0, opacity: 1, duration: 0.35, ease: 'power2.in', pointerEvents: 'auto' });
+  });
+});
+
+document.querySelectorAll('.social-link-block').forEach(block => {
+  const social1 = block.querySelector('.social-link');
+  const social2 = block.querySelector('.social-link-2');
+  if (!social1 || !social2) return;
+
+  // Initial state: .social-link-2 is below and hidden
+  gsap.set(social2, { yPercent: 100, opacity: 1, pointerEvents: 'none' });
+  gsap.set(social1, { yPercent: 0, opacity: 1, pointerEvents: 'auto' });
+
+  block.addEventListener('mouseenter', () => {
+    // Move .social-link up and fade out
+    gsap.to(social1, { yPercent: -100, opacity: 0, duration: 0.35, ease: 'power2.out', pointerEvents: 'none' });
+    // Move .social-link-2 up into place and fade in
+    gsap.to(social2, { yPercent: 0, opacity: 1, duration: 0.35, ease: 'power2.out', pointerEvents: 'auto' });
+  });
+  block.addEventListener('mouseleave', () => {
+    // Move .social-link-2 down and fade out
+    gsap.to(social2, { yPercent: 100, opacity: 0, duration: 0.35, ease: 'power2.in', pointerEvents: 'none' });
+    // Move .social-link back into place and fade in
+    gsap.to(social1, { yPercent: 0, opacity: 1, duration: 0.35, ease: 'power2.in', pointerEvents: 'auto' });
+  });
+});
 // Global custom cursor for the whole website
 const customCursor = document.querySelector('.custom-cursor');
 if (customCursor) {
@@ -38,7 +107,7 @@ if (customCursor) {
     cursorVisible = true;
     gsap.to(customCursor, { opacity: 1, duration: 0.15, ease: 'power2.out' });
   }
-
+  
   // Show cursor on first mouse move
   function showCursorOnFirstMove() {
     showCursor();
@@ -52,6 +121,8 @@ if (customCursor) {
       el.addEventListener('mouseleave', showCursor);
     });
   }
+
+  
 }
 
 // NZDT time updater for .time in HH:MM:SS format
