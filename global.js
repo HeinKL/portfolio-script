@@ -275,9 +275,11 @@ $(function() {
   });
 });
 
-// On Back Button Tap
+// On Back Button Tap or swipe back (mobile): reload page for page transition
 window.onpageshow = function (event) {
-  if (event.persisted) window.location.reload();
+  if (event.persisted || performance.navigation.type === 2) {
+    window.location.reload();
+  }
 };
 
 
