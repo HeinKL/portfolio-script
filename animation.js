@@ -515,28 +515,7 @@ let aboutTl = gsap.timeline({
 //     stagger: 1
 // });
 
-let showCaseTl = gsap.timeline({
-    scrollTrigger: {
-    trigger: '.section.showcase-reel-section-wrap',
-    scrub: true,
-    start: "top 50%",
-    end: "+=500",
-  }
-});
 
-showCaseTl.to('.showcase-reel-wrapper',{
-    duration: 1,
-    clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", // target shape
-    ease: "power1.inOut",
-});
-
-showCaseTl.fromTo(".showcase-reel",                // Target
-  { yPercent: -10,},          // From (initial state)
-  { 
-      yPercent: 10,
-      ease: "power1.inOut",
-      duration: 1,
-},'<');
 
 
 // aboutTl.from('.about-me-1', {
