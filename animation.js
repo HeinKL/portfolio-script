@@ -283,6 +283,60 @@ assetWrappers.forEach(wrapper => {
     animating = false;
   });
 });
+
+// Custom cursor for .article-list using .read-more with lag effect
+const articleWrappers = document.querySelectorAll('.article-list');
+articleWrappers.forEach(wrapper => {
+  const readMore = wrapper.querySelector('.read-more');
+  if (!readMore) return;
+  wrapper.style.cursor = 'fixed';
+  readMore.style.position = 'absolute';
+  readMore.style.pointerEvents = 'none';
+  readMore.style.zIndex = 10;
+  readMore.style.opacity = 0;
+
+  let mouseX = 0, mouseY = 0;
+  let lagX = 0, lagY = 0;
+  let animating = false;
+
+  function animateLagCursor() {
+    lagX += (mouseX - lagX) * 0.08;
+    lagY += (mouseY - lagY) * 0.08;
+    readMore.style.transform = `translate3d(${lagX}px, ${lagY}px, 0)`;
+    if (animating) requestAnimationFrame(animateLagCursor);
+  }
+
+  let moveHandler;
+
+  wrapper.addEventListener('mouseenter', (e) => {
+    gsap.to(readMore, { opacity: 1, scale: 1, duration: 0.3, ease: 'power2.out' });
+    const rect = wrapper.getBoundingClientRect();
+    mouseX = (e.clientX || rect.left) - rect.left - readMore.offsetWidth / 2;
+    mouseY = (e.clientY || rect.top) - rect.top - readMore.offsetHeight / 2;
+    lagX = mouseX;
+    lagY = mouseY;
+    animating = true;
+    animateLagCursor();
+    moveHandler = function(e) {
+      const rect = wrapper.getBoundingClientRect();
+      let x = e.clientX - rect.left;
+      let y = e.clientY - rect.top;
+      const rw = readMore.offsetWidth;
+      const rh = readMore.offsetHeight;
+      x = Math.max(0, Math.min(x, rect.width));
+      y = Math.max(0, Math.min(y, rect.height));
+      mouseX = x - rw / 2;
+      mouseY = y - rh / 2;
+    };
+    wrapper.addEventListener('mousemove', moveHandler);
+  });
+
+  wrapper.addEventListener('mouseleave', () => {
+    gsap.to(readMore, { opacity: 0, scale: 0.8, duration: 0.3, ease: 'power2.out' });
+    if (moveHandler) wrapper.removeEventListener('mousemove', moveHandler);
+    animating = false;
+  });
+});
   
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText); 

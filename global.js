@@ -121,6 +121,14 @@ if (customCursor) {
       el.addEventListener('mouseleave', showCursor);
     });
   }
+    // Hide/show cursor on .article-list hover
+    const articleLists = document.querySelectorAll('.article-list');
+    if (articleLists.length) {
+      articleLists.forEach(el => {
+        el.addEventListener('mouseenter', hideCursor);
+        el.addEventListener('mouseleave', showCursor);
+      });
+    }
 
   
 }
