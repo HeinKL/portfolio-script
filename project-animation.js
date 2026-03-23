@@ -116,6 +116,31 @@ gsap.fromTo(".project-hero-image",                // Target
         }
 });
 
+// Read More button expand animation
+window.addEventListener('load', () => {
+
+  const wrapper = document.querySelector('.stage-wrapper');
+  const btn = document.querySelector('.read-more-btn');
+  const svg = document.querySelector('.read-more-svg');
+  const textEl = document.querySelector('.text-label');
+
+  const fullWidth = btn.offsetWidth;
+  const collapsedWidth = svg.offsetWidth + 24;
+
+  gsap.set(btn, { width: collapsedWidth });
+  gsap.set(textEl, { autoAlpha: 0, x: -6 });
+
+  const tl = gsap.timeline({ paused: true });
+
+  tl.to(btn, { width: fullWidth, duration: 0.4, ease: 'power3.out' })
+    .to(textEl, { autoAlpha: 1, x: 0, duration: 0.25, ease: 'power2.out' }, '-=0.2');
+
+  wrapper.addEventListener('mouseenter', () => tl.play());
+  wrapper.addEventListener('mouseleave', () => tl.reverse());
+
+});
+
+
 // let footer = document.querySelector(".section.footer-section"),
 //     getOverlap = () => Math.min(window.innerHeight, footer.offsetHeight), // we never want it to overlap more than the height of the screen
 //     adjustFooterOverlap = () => footer.style.marginTop = -getOverlap() + "px"; // adjusts the margin-top of the footer to overlap the proper amount
