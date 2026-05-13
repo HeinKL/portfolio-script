@@ -156,9 +156,11 @@ function updateNZTime() {
 setInterval(updateNZTime, 1000);
 updateNZTime();
 
-let tl = gsap.timeline();
-tl.to(".transition_column", {yPercent: -100, stagger: 0.2})
-tl.set(".transition_wrap", {display: "none"})
+$(function() {
+  let tl = gsap.timeline();
+  tl.to(".transition_column", {yPercent: -100, stagger: 0.2})
+  tl.set(".transition_wrap", {display: "none"})
+});
 
 // link click for all internal links (except anchors, new tab, mailto, tel)
 $(document).on("click", "a[href]", function (e) {
