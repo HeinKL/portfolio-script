@@ -5,7 +5,7 @@ document.querySelectorAll('.nav-logo-block').forEach(block => {
   if (!navLogo1 || !navLogo2) return;
 
   // Initial state: .social-link-2 is below and hidden
-  gsap.set(navLogo2, { yPercent: 100, opacity: 1, pointerEvents: 'none' });
+  gsap.set(navLogo2, { yPercent: 100, opacity: 0, pointerEvents: 'none' });
   gsap.set(navLogo1, { yPercent: 0, opacity: 1, pointerEvents: 'auto' });
 
   block.addEventListener('mouseenter', () => {
@@ -28,7 +28,7 @@ document.querySelectorAll('.nav-link-block').forEach(block => {
   if (!navLink1 || !navLink2) return;
 
   // Initial state: .social-link-2 is below and hidden
-  gsap.set(navLink2, { yPercent: 100, opacity: 1, pointerEvents: 'none' });
+  gsap.set(navLink2, { yPercent: 100, opacity: 0, pointerEvents: 'none' });
   gsap.set(navLink1, { yPercent: 0, opacity: 1, pointerEvents: 'auto' });
 
   block.addEventListener('mouseenter', () => {
@@ -51,7 +51,7 @@ document.querySelectorAll('.social-link-block').forEach(block => {
   if (!social1 || !social2) return;
 
   // Initial state: .social-link-2 is below and hidden
-  gsap.set(social2, { yPercent: 100, opacity: 1, pointerEvents: 'none' });
+  gsap.set(social2, { yPercent: 100, opacity: 0, pointerEvents: 'none' });
   gsap.set(social1, { yPercent: 0, opacity: 1, pointerEvents: 'auto' });
 
   block.addEventListener('mouseenter', () => {
